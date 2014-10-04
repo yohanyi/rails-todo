@@ -16,10 +16,13 @@ Enter a task here
 <% @tasks.each do |task| %>
 	
 	<% if task.status == false %>
-		<li><%= task.id %> <%= task.name %></li><br>
+		<li><%= task.id %> <%= task.name %></li>
 		<!-- button to update some shit -->
-		
 
+    <%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
+     <%= submit_tag("DONE") %>
+    <% end %>
+      
 
 	<% else %>
 		<li class="strikethrough"><%= task.name %></li>
