@@ -24,24 +24,23 @@ class TasksController < ApplicationController
 	end
 
 	def update
-		@task = Task.find_by_id(params[:id])
-		p @task
-		puts "****************************************"
-		p params
-		@task.update_attributes(status: true)
+		puts "YOOOOOOOOOOOOO"
+		@task = Task.find(params[:id])
+		@task.update_attribute(:status, true)
 		@task.save
+		redirect_to root_path # punch yohan if this is wrong
 	end
 
 	def destroy
 	end
 
-	# private
+	private
 
-	# def task_params
-	# 	params.require(:task).permit(
-	# 		:name,
-	# 		:status
-	# 	)
-	# end
+	def task_params
+		params.require(:task).permit(
+			:name,
+			:status
+		)
+	end
 
 end
