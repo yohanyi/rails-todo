@@ -1,0 +1,29 @@
+Enter a task here
+
+<!-- task form -->
+<%= form_for @task, { controller: "task" } do |f| %>
+
+	<%= f.label :name %>:
+  <%= f.text_field :name, placeholder: "task name" %>
+  <br>
+
+  <%= f.submit "Submit" %>
+
+<% end %>
+
+<!-- print out all tasks -->
+<ul class="font-family-sans">
+<% @tasks.each do |task| %>
+	
+	<% if task.status == false %>
+		<li><%= task.id %> <%= task.name %></li><br>
+		<!-- button to update some shit -->
+		
+
+
+	<% else %>
+		<li class="strikethrough"><%= task.name %></li>
+	<% end %>
+
+<% end %>
+</ul>
