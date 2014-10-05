@@ -7,15 +7,11 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		puts "****************************************"
-		p params
 		@task = Task.new(:name => params[:task][:name])
 
 		if @task.save
-			puts "========= SAVED"
-			redirect_to root_path # punch yohan if this is wrong
+			redirect_to root_path
 		else
-			puts "========= GODDAMNIT"
 			redirect_to :back
 		end
 	end
@@ -24,12 +20,10 @@ class TasksController < ApplicationController
 	end
 
 	def update
-		@task = Task.find_by_id(params[:id])
-		p @task
-		puts "****************************************"
-		p params
-		@task.update_attributes(status: true)
+		@task = Task.find(params[:id])
+		@task.update_attribute(:status, true)
 		@task.save
+		redirect_to root_path # punch yohan if this is wrong
 	end
 
 	def destroy

@@ -1,2 +1,10 @@
-.strikethrough  				{ text-decoration: line-through; }\
-.font-family-sans 			{ font-family: sans-serif; }
+.background-cyan 				{ background: cyan; }
+.background-magenta 		{ background: magenta; }
+.background-orangered 	{ background: orangered; }
+.background-yellow 			{ background: yellow; }
+.float-left 						{ float: left; }
+.height-50px						{ height: 50px; }
+.strikethrough  				{ text-decoration: line-through; }
+.width-50px							{ width: 50px; }
+.width-33								{ width: 33%; }
+.width-100 							{ width: 100%; }

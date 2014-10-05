@@ -1,29 +1,68 @@
-Enter a task here
+<h4>Gohan Kanban</h4>
+<div class="width-100 height-30px">
+	<img class="border-radius-50 height-50px width-50px" src="http://cyly.eu/img/2014/01/kid-gohan.png">
+</div>
+
 
 <!-- task form -->
-<%= form_for @task, { controller: "task" } do |f| %>
+<div class="width-100 background-cyan">
+	<%= form_for @task, { controller: "task" } do |f| %>
 
-	<%= f.label :name %>:
-  <%= f.text_field :name, placeholder: "task name" %>
-  <br>
+		<%= f.label :name %>:
+	  <%= f.text_field :name, placeholder: "task name" %>
+	  <br>
 
-  <%= f.submit "Submit" %>
+	  <%= f.submit "Submit" %>
 
-<% end %>
-
-<!-- print out all tasks -->
-<ul class="font-family-sans">
-<% @tasks.each do |task| %>
-	
-	<% if task.status == false %>
-		<li><%= task.id %> <%= task.name %></li><br>
-		<!-- button to update some shit -->
-		
-
-
-	<% else %>
-		<li class="strikethrough"><%= task.name %></li>
 	<% end %>
+</div>
 
-<% end %>
-</ul>
+<!--  -->
+<div class="width-100">
+	<div class="width-33 background-magenta float-left">
+		<h5>To Do</h5>
+		<ul>
+
+		<% @tasks.each do |task| %>
+			
+			<% if task.status == false %>
+				
+				<li><%= task.id %> <%= task.name %></li><br>
+				<!-- button to update some shit -->
+		 		<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
+		     <%= submit_tag("DONE") %>
+		    <% end %>
+			
+			<% end %>
+
+		<% end %>
+		</ul>
+	</div>
+
+	<!--  -->
+	<div class="width-33 background-yellow float-left">
+		<h5>In Progress</h5>
+		<ul>
+
+		<% @tasks.each do |task| %>
+			
+			<% if task.status == true %>
+				
+				<li><%= task.id %> <%= task.name %></li><br>
+				<!-- button to update some shit -->
+		 		<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
+		     <%= submit_tag("DONE") %>
+		    <% end %>
+			
+			<% end %>
+
+		<% end %>
+		</ul>
+	</div>
+
+	<!--  -->
+	<div class="width-33 background-orangered float-left">
+	<h5>Done</h5>
+	</div>
+
+</div>
