@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
     	t.string :name
     	# 3 statuses: todo, progress, done
     	t.string :status, :default => "todo"
+      t.belongs_to :user
     	t.timestamps
     end
   end
