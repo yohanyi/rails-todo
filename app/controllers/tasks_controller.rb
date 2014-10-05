@@ -21,9 +21,13 @@ class TasksController < ApplicationController
 
 	def update
 		@task = Task.find(params[:id])
-		@task.update_attribute(:status, true)
+		if @task.status == "todo"
+			@task.update_attribute(:status, "progress")
+		elsif @task.status == "progress"
+			@task.update_attribute(:status, "done")
+		end
 		@task.save
-		redirect_to root_path # punch yohan if this is wrong
+		redirect_to root_path
 	end
 
 	def destroy

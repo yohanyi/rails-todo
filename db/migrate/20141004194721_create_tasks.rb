@@ -2,7 +2,8 @@ class CreateTasks < ActiveRecord::Migration
   def change
     create_table :tasks do |t|
     	t.string :name
-    	t.boolean :status, :default => false
+    	# 3 statuses: todo, progress, done
+    	t.string :status, :default => "todo"
     	t.timestamps
     end
   end
