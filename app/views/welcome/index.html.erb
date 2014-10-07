@@ -1,84 +1,83 @@
-<!-- title -->
-<h4>Gohan Kanban</h4>
-<div class="width-100 height-30px">
-	<img class="border-radius-50 height-50px width-50px" src="http://cyly.eu/img/2014/01/kid-gohan.png">
+<!-- nav -->
+<div class="width-100 height-50px padding-left-10px padding-top-10px background-light-gray">
+	<div class="font-size-1em float-left font-family-shadows">Yorda</div>
+	<div class="float-right padding-top-5px padding-left-10px padding-right-10px">Login</div>
+	<div class="float-right padding-top-5px padding-left-10px padding-right-10px">Register</div>
 </div>
 
+<!-- register -->
+<div class="padding-top-10px width-250px text-align-right margin-auto">
+	<%= form_for @user do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name, class: "border-radius-3px" %><br>
 
-<!-- task form -->
-<div class="width-100 background-cyan">
-	<%= form_for @task, { controller: "task" } do |f| %>
-
-		<%= f.label :name %>:
-	  <%= f.text_field :name, placeholder: "task name" %>
-	  <br>
-
-	  <%= f.submit "Submit" %>
-
+		<%= f.label :email %>
+		<%= f.text_field :email, class: "border-radius-3px" %><br>
+		
+		<%= f.label :password %>
+		<%= f.password_field :password, class: "border-radius-3px" %><br>
+		
+		<%= f.submit "Register", class: "border-radius-3px" %>
 	<% end %>
 </div>
 
-<!-- todo -->
-<div class="width-100">
-	<div class="width-33 background-magenta float-left">
-		<h5>To Do</h5>
-		<ul>
+<!-- task form -->
+<div class="padding-left-10px width-100 padding-top-15px">
+	<%= form_for @task do |f| %>
 
-		<% @tasks.each do |task| %>
-			
-			<% if task.status == "todo" %>
-				
-				<li><%= task.id %> <%= task.name %></li><br>
-				<!-- button to update some shit -->
-		 		<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
-		     <%= submit_tag("Start") %>
-		    <% end %>
-			
+	  <%= f.text_field :name, placeholder: "Enter New Task", class: "border-radius-3px" %>
+	  <%= f.submit "!", class: "border-radius-3px" %>
+	  <%= %>
+	<% end %>
+</div>
+
+<!-- board container -->
+<div class="padding-top-15px">
+	<!-- todo -->
+	<div class="width-33 float-left border-radius-3px board padding-bottom-10px">
+			<h5 class="text-align-center">To Do</h5>
+			<% @tasks.each do |task| %>
+				<% if task.status == "todo" %>	
+				<div class="text-align-center padding-top-10px">
+					<%= task.id %> <%= task.name %>
+						<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
+			     		<%= submit_tag("Start") %>
+				</div>
+			    	<% end %>
+			  
+				<% end %>
 			<% end %>
-
-		<% end %>
-		</ul>
 	</div>
 
 	<!-- progress -->
-	<div class="width-33 background-yellow float-left">
-		<h5>In Progress</h5>
-		<ul>
-
-		<% @tasks.each do |task| %>
-			
-			<% if task.status == "progress" %>
-				
-				<li><%= task.id %> <%= task.name %></li><br>
-				<!-- button to update some shit -->
-		 		<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
-		     <%= submit_tag("Complete") %>
-		    <% end %>
-			
+	<div class="width-33 float-left border-radius-3px board">
+			<h5 class="text-align-center">In Progress</h5>
+			<% @tasks.each do |task| %>
+				<% if task.status == "progress" %>	
+				<div class="text-align-center padding-top-10px">
+					<%= task.id %> <%= task.name %>
+						<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
+			     		<%= submit_tag("Completed") %>
+				</div>
+			    	<% end %>
+			  
+				<% end %>
 			<% end %>
+		</div>
 
-		<% end %>
-		</ul>
-	</div>
 
 	<!-- done -->
-	<div class="width-33 background-orangered float-left">
-	<h5>Done</h5>
-	<ul>
-
-		<% @tasks.each do |task| %>
-			
-			<% if task.status == "done" %>
-				
-				<li><%= task.id %> <%= task.name %></li><br>
-				<!-- button to update some shit -->
-		 		<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
-		    <% end %>
-			
+	<div class="width-33 float-left border-radius-3px board">
+			<h5 class="text-align-center">Done</h5>
+			<% @tasks.each do |task| %>
+				<% if task.status == "done" %>	
+				<div class="text-align-center padding-top-10px">
+					<%= task.id %> <%= task.name %>
+						<%= form_for task, :url => {:action => "update", :id => task.id, :controller => "tasks"} do |f|  %>
+				</div>
+			    	<% end %>
+			  
+				<% end %>
 			<% end %>
-
-		<% end %>
-		</ul>
-	</div>
-
-</div>
+	</div> <!-- end done -->
+</div> <!-- end board container

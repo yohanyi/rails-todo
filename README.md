@@ -1,4 +1,4 @@
-rails-todo
+Gohan Kanban
 ==========
 
-Rails ToDo list
+Rails simple kanban board made with <a href="https://github.com/yohanyi">Yohan Yi</a>
